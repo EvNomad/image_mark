@@ -1,2 +1,6 @@
-var firstHref = $("a[href^='http']").eq(0).attr("href");
-console.log(firstHref);
+// Get all imgage elements on page and populate array of predefined images size
+var images = $("img").map(function(){
+	return (this.naturalWidth > 150 && this.naturalHeight > 150) ? this : null;
+}).get();
+
+console.log(images);
