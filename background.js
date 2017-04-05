@@ -1,4 +1,3 @@
-var tree = null;
 var base_url = null;
 var rootFolderName = "Great Pics";
 var img_urls = [];
@@ -18,11 +17,8 @@ function click(e) {
 function processMessage(request, sender, sendResponse) {
     if (request.ext == "imageMark") {
         base_url = sender.tab.url;
-        chrome.bookmarks.getTree(function (item) {
-            tree = item;
-        });
-        img_urls = request.imgagesArray;
 
+        img_urls = request.imgagesArray;
         createFolders(currentNodeId, rootFolderName, 0);
         sendResponse({status: "Done!"});
     }
@@ -36,8 +32,7 @@ function createFolders(parentId, folderName, depth) {
         var exists = false;
         children.forEach(function (node) {
             if (node.title == folderName) {
-                exists = true;
-                console.log(currentNodeId);
+                exists = true;              
                 if (depth < 1) {
                     createFolders(node.id, base_url, 1)
                 }
