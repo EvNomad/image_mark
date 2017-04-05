@@ -19,8 +19,11 @@ function processMessage(request, sender, sendResponse) {
         base_url = sender.tab.url;
 
         img_urls = request.imgagesArray;
-        createFolders(currentNodeId, rootFolderName, 0);
-        sendResponse({status: "Done!"});
+        if (img_urls.length > 0){
+        	createFolders(currentNodeId, rootFolderName, 0);
+        	sendResponse({status: "Done!"});	
+        }
+        
     }
 }
 
